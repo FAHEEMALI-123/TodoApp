@@ -6,7 +6,7 @@ function ImageHeader() {
   return (
     <div>
 
-      <img src={logo} className='w-28 h-28 object-contain mb-8'></img>
+      <img src={logo} alt="logo" className='w-28 h-28 object-contain mb-8'></img>
     </div>
   )
 }

@@ -8,35 +8,39 @@ import Input from "./Components/Input";
 import Listtodo from "./Components/Listtodo";
 
 function App() {
-  const[items,SetItems]=useState<items[]>([]);
-  const[input,SetInput]=useState<string>("");
+  const [items, SetItems] = useState<items[]>([]);
+  const [input, SetInput] = useState<string>("");
 
-type items={
-  id:string;
-  title:string;
-}
+  type items = {
+    id: string;
+    title: string;
+  };
 
-   const handlesubmit=(e:React.FormEvent)=>{
+  const handlesubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    SetItems((prev)=>[...prev,{title:input,id:Date.now().toString()}]);
-    SetInput(""); 
-  }
 
- 
- 
+    if (!input) return;
+
+    SetItems((prev) => [ { title: input, id: new Date().toString() }, ...prev]);
+    SetInput("");
+  };
+
   return (
-    <div className="h-[100vh] flex flex-col justify-center items-center">
+    <div className=" flex flex-col items-center ">
       <ImageHeader />
 
       <div className="w-[350px]">
         <form className="mb-5" onSubmit={handlesubmit}>
-          <Input type="text" input={input} SetInput={SetInput} />
-'         <button type="submit" className="bg-gray-700 w-full p-2">
+          <label className="input input-bordered flex items-center gap-2 mb-4">
+            Todo
+            <Input type="text" input={input} SetInput={SetInput} className="grow" placeholder="Your Todo here" />
+          </label>
+          
+          <button type="submit" className="btn btn-outline">
             Add
           </button>
         </form>
         <Listtodo itemss={items} SetItems={SetItems} />
-          
       </div>
     </div>
   );

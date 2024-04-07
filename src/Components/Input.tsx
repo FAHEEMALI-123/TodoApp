@@ -4,14 +4,19 @@ type input={
     input:string;
     SetInput:React.Dispatch<React.SetStateAction<string>>;
     type:"text"|"color"|"checkbox";
+    className?:string;
+    placeholder?:string;
 }
-function Input({type,input,SetInput}:input) {
+function Input({type,input,SetInput,className,placeholder
+
+}:input) {
   return (
     
       <input
         type={type}
         value={input}
-        className="w-full p-2 rounded-sm mb-2"
+        className={className}
+        placeholder={placeholder}
         onChange={(event) => SetInput(event.target.value)}
       ></input>
    
